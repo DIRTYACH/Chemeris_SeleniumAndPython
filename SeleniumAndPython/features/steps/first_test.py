@@ -9,17 +9,9 @@ import time
 
 
 #Откроем главную страницу. Передадим в качестве аргумента адрес страницы.
-@given('website firefox"{url}"')
+@given('open website "{url}"')
 def step(context, url):
-#Измените строку, для выполнения теста в другом браузере
     context.browser = webdriver.Firefox()
-    context.browser.maximize_window()
-    context.browser.get(url)
-
-@given('website chrome "{url}"')
-def step(context, url):
-#Измените строку, для выполнения теста в другом браузере
-    context.browser = webdriver.Chrome()
     context.browser.maximize_window()
     context.browser.get(url)
 
@@ -43,4 +35,9 @@ def step(context, text):
 #Вводим текст в поле поиска
 @then("enter the text {text}")
 def step(context, text):
-    context.browser.find_element(By.NAME, "text").send_keys("google", Keys.ENTER)
+    context.browser.find_element(By.NAME, "q").send_keys("minecraft", Keys.ARROW_DOWN)
+
+
+@when("text is correct")
+def step(context):
+    
